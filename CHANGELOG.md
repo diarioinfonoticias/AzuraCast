@@ -9,16 +9,42 @@ release channel, you can take advantage of these new features and fixes.
   pages, we now use a new search tool called Meilisearch that allows for very fast, very accurate search results, as
   well as more complex search queries (and other goodies, like typo correction).
 
+- **Master_me and Post-Processing Tweaks:** We now have built-in support
+  for [master_me](https://github.com/trummerschlunk/master_me), an open-source audio mastering tool that helps add
+  polish and "punch" to your streams. Its functionality is similar to Stereo Tool, but because it's open-source, we
+  include it in every AzuraCast installation. You can now also customize whether our post-processing step includes your
+  live DJ performances.
+
 ## Code Quality/Technical Changes
 
 - **Initial Podman Support**: Podman is an increasingly popular drop-in replacement for Docker, originally from the
   RedHat Enterprise Linux community of distributions. We have updated our Docker utility script to include a Podman
   support mode. Feel free to report any bugs to us!
 
+- **Install Custom Packages at Startup**: If you want to take advantage of specific Ubuntu packages available
+  via `apt-get install`, you can now specify those files in an `azuracast.env` environment variable
+  named `INSTALL_PACKAGES_ON_STARTUP`. Because users can now install any extra packages they need, we are removing some
+  non-essential packages from our shipped Docker image, namely several LADSPA audio plugins; to reinstall the full set
+  of plugins that were previously available, add this line to your `azuracast.env` file:
+
+  ```
+  INSTALL_PACKAGES_ON_STARTUP="frei0r-plugins-dev multimedia-audio-plugins swh-plugins tap-plugins lsp-plugins-ladspa"
+  ```
+
+- Our Docker Utility Script now directly supports version 2 of Docker Compose (invoked using `docker compose` rather
+  than `docker-compose`).
+
+- Our Dropbox storage location support now includes support for Dropbox's new short-lived access tokens. We include
+  instructions on how to set up and use Dropbox as an AzuraCast storage location on the Storage Locations administration
+  page.
+
+- We've re-tuned the Now Playing updates from how they worked in version 0.17.7 so they will no longer consume very high
+  amounts of CPU and RAM on installations with many (30+) stations.
+
 - We have made more changes to how our Message Queue system works in order to ensure we don't encounter a "runaway
   queue" problem with larger libraries.
 
-- Icecast-KH has been updated to version KH-18.
+- Icecast-KH has been updated to its latest version.
 
 ## Bug Fixes
 

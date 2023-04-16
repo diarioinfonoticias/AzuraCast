@@ -8,11 +8,10 @@ apt-get install -y --no-install-recommends \
     libsdl2-image-2.0-0 libsdl2-ttf-2.0-0 libsoundtouch1 libxpm4 \
     libasound2 libavcodec58 libavdevice58 libavfilter7 libavformat58 libavutil56 \
     libpulse0 libsamplerate0 libswresample3 libswscale5 libtag1v5 \
-    libsrt1.4-openssl bubblewrap ffmpeg
+    libsrt1.4-openssl bubblewrap ffmpeg liblilv-0-0
 
-# Optional audio plugins
-apt-get install -y --no-install-recommends frei0r-plugins-dev ladspa-sdk multimedia-audio-plugins swh-plugins \
-    tap-plugins lsp-plugins-ladspa
+# Audio Post-processing
+apt-get install -y --no-install-recommends ladspa-sdk
 
 # Per-architecture LS installs
 ARCHITECTURE=amd64
